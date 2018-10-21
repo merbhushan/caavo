@@ -137,7 +137,6 @@
        */
       showSeriesEpisodes(intSeriesId){
         this.intSelectedSeries = intSeriesId;
-        console.log(this.intSelectedSeries);
       }
     }
   }

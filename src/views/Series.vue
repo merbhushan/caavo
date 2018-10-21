@@ -10,7 +10,7 @@
 
             <v-tab-item v-for="season in detail.seasons" :id="'season-' + season.season_number" :key="'season-' +season.season_number">
             <v-card flat>
-                <showListing :strService="season.episodes"></showListing>
+                <showListing :strService="season.episodes" blnSeriesListing=1 :strProfile="season.episodes"></showListing>
             </v-card>
             </v-tab-item>
         </v-tabs>

@@ -66,7 +66,7 @@
 
     export default {
         // strService will have name of service for which listing will be shown
-        props: ['strService', 'strProfile'],
+        props: ['strService', 'strProfile', 'blnSeriesListing'],
         components: { MugenScroll },
         data() {
             return {
@@ -190,21 +190,31 @@
             // Return First attribute of line 2
             getFirstAttribute(post){
                 if(post.show_type == 'SE'){
-                    return 'S' +post.episode_season_number +'/E' +post.episode_number;
+                    return 'S' +post.episode_season_number +'/E' +post.season_number>0? post.season_number: post.episode_number;
                 }
                 return post.release_year
             },
 
             getSecondAttribute(post){
-                if(post.show_type == 'SE'){
+                if(post.show_type == 'SE' && this.blnSeriesListing == 1){
+                    if(post && post.air_date && post.air_date[0].date){
+                        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                        return post.air_date[0].date.substr(6,2) +' ' +months[post.air_date[0].date.substr(4,2)] +' ' + post.air_date[0].date.substr(0,4);
+                    }
+                }
+                else if(post.show_type == 'SE'){
                     return '"' +post.original_episode_title +'"';
                 }
+                
                 return post.movie_type
             },
             // Returns title of a show.
             getTitle(post){
                 if(post.show_type == 'SN'){
                     return post.long_title +': SEASON ' +post.episode_season_number;
+                }
+                else if(post.show_type == 'SE' && this.blnSeriesListing==1){
+                    return post.original_episode_title
                 }
                 return post.long_title;
             }
