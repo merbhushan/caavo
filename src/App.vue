@@ -29,7 +29,7 @@
     <v-content>
       <v-container fill-height>
         <invalidAccount :serviceName="strServiceName" v-if="blnShowInvalidAccountAlert"/>
-        <showSeriesEpisodes v-else-if="intSelectedSeries" :title="post"/>
+        <showSeriesEpisodes v-else-if="intSelectedSeries"/>
           <v-flex v-else-if="strSelectedService == 'netflixusa' && strSelectedNetflixProfile == ''">
             <netflixProfile @update-netflix-profile="updateNetflixProfile" :arrProfiles="strNetflixProfiles" />
           </v-flex>
@@ -59,8 +59,8 @@
       drawer: true,
       // Available servies
       items: [
-        { id: 1, icon: '', text: 'Dish', service: 'dishmexico'},
         { id: 2, icon: '', text: 'Amazon', service: 'amazon' },
+        { id: 1, icon: '', text: 'Dish', service: 'dishmexico'},
         { id: 3, icon: '', text: 'HBO GO', service: 'hbogo' },
         { id: 4, icon: '', text: 'NETFLIX', service: 'netflixusa' },
         { id: 5, icon: '', text: 'Showtime Anytime', service: 'showtime' },
@@ -92,6 +92,10 @@
       strSelectedNetflixProfile: '',
       intSelectedSeries: '',
     }),
+
+    created(){
+      this.validateAccess(this.items[0].service, this.items[0].text, this.items[0].id)
+    },
 
     methods: {
       /**
