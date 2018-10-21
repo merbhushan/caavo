@@ -1,5 +1,5 @@
 <template>
-    <v-layout>
+    <v-layout align-center justify-center row fill-height>
         <v-flex xs12 sm8 offset-sm-1>
             <v-card>
                 <v-card-title primary-title>
@@ -13,7 +13,7 @@
                             </v-flex>
                         </v-layout>
                         <div>
-                            Failed to fetch your <b>HBO GO</b> list due to wrong credentials. <br> Do you want to modify it now?
+                            Failed to fetch your <b>{{ serviceName }}</b> list due to wrong credentials. <br> Do you want to modify it now?
                         </div>
                     </div>
                 </v-card-title>
@@ -28,3 +28,9 @@
         </v-flex>
     </v-layout>
 </template>
+
+<script>
+export default {
+    props: ['serviceName']
+}
+</script>
