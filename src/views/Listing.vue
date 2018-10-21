@@ -189,7 +189,6 @@
             },
             // Return First attribute of line 2
             getFirstAttribute(post){
-                console.log(post.show_type);
                 if(post.show_type == 'SE'){
                     return 'S' +post.episode_season_number +'/E' + post.episode_number;
                 }
