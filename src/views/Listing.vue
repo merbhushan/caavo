@@ -225,10 +225,10 @@
 
 <style>
     .v-list__tile__sub-title span{
-        margin: 0px 15px 0px 15px;
+        margin-right: 25px;
     }
 
     .detail span{
-        margin: 0px 15px 0px 15px;
+        margin-right: 25px;
     }
 </style>
