@@ -29,7 +29,7 @@
                                     <span v-if="post.show_type != 'OT'"> {{getSecondAttribute(post)}} </span>
                                     <span> {{strTime(post.run_time)}} </span>
                                 </div>
-                                <div>{{post.description[0].program_description}}</div>
+                                <div style="height: 80px;">{{post.description[0].program_description.length > 235? post.description[0].program_description.substr(0,234) + '.....' : post.description[0].program_description}}</div>
                                 <div>
                                     <v-btn @click="post.show_type == 'SN'?showSeasons(post.series_id):startVideoPlayer(post.id)" depressed small color="grey lighten-4" class="grey--text text--darken-2">
                                         {{post.show_type == 'SN'? 'Viwe Episodes': 'Watch'}}
@@ -189,8 +189,9 @@
             },
             // Return First attribute of line 2
             getFirstAttribute(post){
+                console.log(post.show_type);
                 if(post.show_type == 'SE'){
-                    return 'S' +post.episode_season_number +'/E' +post.season_number>0? post.season_number: post.episode_number;
+                    return 'S' +post.episode_season_number +'/E' + post.episode_number;
                 }
                 return post.release_year
             },
@@ -211,7 +212,7 @@
             // Returns title of a show.
             getTitle(post){
                 if(post.show_type == 'SN'){
-                    return post.long_title +': SEASON ' +post.episode_season_number;
+                    return post.long_title +': SEASON ' +post.season_number;
                 }
                 else if(post.show_type == 'SE' && this.blnSeriesListing==1){
                     return post.original_episode_title
