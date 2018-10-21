@@ -5,7 +5,7 @@
                 <v-list-tile @click="" @mouseover="setDetailComponent(post.id)">
                 <v-list-tile-content>
                     <v-list-tile-title>
-                    {{ getTitle(post) }}
+                    <h2>{{ getTitle(post) }}</h2>
                     </v-list-tile-title>
                     <v-list-tile-sub-title>
                         <span > {{getFirstAttribute(post)}} </span> 
